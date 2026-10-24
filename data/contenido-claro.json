@@ -1,0 +1,443 @@
+{
+  "_nota": "Capa de lenguaje claro para los modos STORIES y JUEGO. El texto académico (BRIEF sección 5) NO se toca y es el único que usa el modo DOCUMENTO. Reglas de este archivo: (1) los números de NUESTRO estudio se escriben como marcadores {res.ruta} y salen de resumen() en datos.js; (2) los números de la LITERATURA se escriben como {lit.clave} y salen del bloque 'lit' de abajo (con su fuente); (3) no escribas ninguna cifra a mano en el código; (4) las citas textuales son literales del BRIEF.",
+  "_marcadores": {
+    "res.n": "número de juegos de la muestra (12)",
+    "res.promedios.<2000s|2010s|AAA|Indie>.texto": "promedio con coma decimal, ej. 1,2",
+    "res.totales.<Alta|Moderada|Nula|Relanzamiento>": "cantidad de juegos con ese resultado",
+    "res.conNostalgia.cantidad": "juegos con algún recurso nostálgico (7)",
+    "res.conNostalgia.simples": "de esos, cuántos usan nostalgia simple (7)",
+    "res.conteoPorPregunta.<2000s|2010s|AAA|Indie>.<P1..P5>": "cuántos juegos del grupo tienen Sí en esa pregunta",
+    "res.diferenciaDecadas": "NUEVO, calcúlalo en datos.js: |promedio 2010s − promedio 2000s| con coma decimal y 2 decimales (0,17)",
+    "lit.<clave>": "cifra de la literatura (valor + unidad) del bloque lit"
+  },
+
+  "lit": {
+    "mtm_remakes_desde_2012": { "valor": "unos 200", "unidad": "", "fuente": "MTM, 2025, p. 4" },
+    "mtm_anunciados_2025": { "valor": "unos 30", "unidad": "", "fuente": "MTM, 2025, p. 4" },
+    "mtm_comodidad": { "valor": 80, "unidad": "%", "fuente": "MTM, 2025, p. 18" },
+    "mtm_compartir": { "valor": 71, "unidad": "%", "fuente": "MTM, 2025, p. 19" },
+    "mtm_sin_original": { "valor": 85, "unidad": "%", "fuente": "MTM, 2025, p. 20" },
+    "mtm_descubrir": { "valor": 67, "unidad": "%", "fuente": "MTM, 2025, p. 20" },
+    "mtm_cambios_mejor": { "valor": 35, "unidad": "%", "fuente": "MTM, 2025, p. 24" },
+    "mtm_cambios_ambos": { "valor": 35, "unidad": "%", "fuente": "MTM, 2025, p. 24" },
+    "mtm_cambios_peor": { "valor": 30, "unidad": "%", "fuente": "MTM, 2025, p. 24" },
+    "mtm_crash_unidades": { "valor": "20 millones", "unidad": "", "fuente": "MTM, 2025, p. 5" },
+    "bowman_participantes": { "valor": 105, "unidad": "", "fuente": "Bowman et al., 2023" },
+    "addeo_casos": { "valor": 22, "unidad": "", "fuente": "Addeo y Guerra, 2026, p. 41" },
+    "vghf_no_disponibles": { "valor": 87, "unidad": "%", "fuente": "Video Game History Foundation, 2023", "nota": "FUENTE NUEVA, no está en el BRIEF. Hay que agregarla a las referencias (ver 'referencias_nuevas')." }
+  },
+
+  "referencias_nuevas": [
+    "Video Game History Foundation. (2023, julio). *87% missing: The disappearance of classic video games*. https://gamehistory.org/87percent/"
+  ],
+
+  "global": {
+    "selector": {
+      "titulo": "¿Cómo quieres verlo?",
+      "subtitulo": "Es la misma investigación en tres formatos. Elige el tuyo.",
+      "opciones": [
+        { "modo": "stories", "nombre": "STORIES", "detalle": "Pantallas rápidas, una idea cada una. Unos 5 minutos." },
+        { "modo": "juego", "nombre": "JUEGO", "detalle": "Corre y salta por la investigación. Unos 10 minutos." },
+        { "modo": "documento", "nombre": "DOCUMENTO", "detalle": "El texto académico completo, para leer o imprimir." }
+      ],
+      "cambiar_modo": "Cambiar de modo"
+    },
+    "controles": {
+      "stories": "Toca o desliza a la derecha para avanzar. Izquierda para volver. También sirven las flechas.",
+      "juego_teclado": "Flechas para moverte, espacio para saltar.",
+      "juego_tactil": "Usa los botones de la pantalla.",
+      "saltar_zona": "Saltar zona",
+      "pausa": "Pausa",
+      "leer_completo": "Leer completo",
+      "cerrar": "Cerrar"
+    },
+    "juego": {
+      "intro": "Recoge monedas, abre los bloques ? y llega a la bandera. Cada bloque guarda un dato de la investigación.",
+      "caida": "¡Ups! Vuelves al inicio de la zona. No pierdes nada.",
+      "bandera_final": "¡Terminaste! Ya viste toda la investigación.",
+      "xp_etiqueta": "XP",
+      "zona_etiqueta": "Zona"
+    },
+    "cierre": {
+      "titulo": "GAME OVER... ¿otra partida?",
+      "botones": ["Volver al inicio", "Ver en otro modo", "Ver referencias"]
+    },
+    "aviso_ia": "Este proyecto usó herramientas de IA como apoyo para revisar la redacción, organizar el contenido y programar la web. La muestra, el test, la codificación y las conclusiones son responsabilidad del grupo.",
+    "aviso_copyright": "Los nombres de videojuegos se mencionan con fines académicos. Esta web no usa imágenes, logotipos ni música de los juegos analizados."
+  },
+
+  "zonas": [
+    { "id": "z1", "nombre": "El problema", "niveles": ["0", "1", "relevancia"], "mundo": "Pradera de píxeles" },
+    { "id": "z2", "nombre": "¿Qué es la nostalgia?", "niveles": ["2", "3", "4"], "mundo": "Bosque de recuerdos" },
+    { "id": "z3", "nombre": "El Test", "niveles": ["5", "6"], "mundo": "Fábrica de cartuchos" },
+    { "id": "z4", "nombre": "Resultados", "niveles": ["7"], "mundo": "Montañas de datos" },
+    { "id": "z5", "nombre": "Hipótesis", "niveles": ["8"], "mundo": "Castillo de los jefes" },
+    { "id": "z6", "nombre": "Conclusión", "niveles": ["9", "10", "11", "12"], "mundo": "Meta final" }
+  ],
+
+  "niveles": [
+    {
+      "nivel": "0",
+      "zona": "z1",
+      "titulo_corto": "Press Start",
+      "frase_clave": "¿Cuánta nostalgia hay en los videojuegos que más se venden?",
+      "pantallas": [
+        { "tipo": "portada", "titulo": "La nostalgia como recurso de desarrollo y estrategia comercial en videojuegos contemporáneos", "subtitulo": "Un análisis de los 12 videojuegos más vendidos de dos décadas", "autores": "Justin Peñafiel · Naomi Armas · Joel Castillo", "curso": "Taller de Investigación · Universidad San Francisco de Quito · 2026" },
+        { "tipo": "frase", "texto": "Medimos {res.n} juegos con las mismas 5 preguntas. Así vimos cuánta nostalgia usan y cómo." }
+      ],
+      "pista_juego": "Bienvenido. Camina a la derecha y salta los bloques."
+    },
+
+    {
+      "nivel": "1",
+      "zona": "z1",
+      "titulo_corto": "El problema",
+      "frase_clave": "La industria mira cada vez más hacia atrás. Queríamos medir cuánto.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Cada vez hay más remakes, remasters y juegos con estética de otra época." },
+        { "tipo": "cifra", "cifra": "{lit.mtm_remakes_desde_2012}", "etiqueta": "remakes y remasters publicados desde 2012", "fuente": "MTM, 2025, p. 4" },
+        { "tipo": "cifra", "cifra": "{lit.mtm_anunciados_2025}", "etiqueta": "más anunciados solo para 2025", "fuente": "MTM, 2025, p. 4" },
+        { "tipo": "frase", "texto": "Y en las tiendas, muchos estudios independientes lanzan juegos pixelados que imitan las consolas de 8 y 16 bits.", "fuente": "Bosman, 2023, p. 27" },
+        { "tipo": "comparacion", "izquierda": { "titulo": "Para las empresas", "texto": "Volver a lo conocido reduce el riesgo de producciones cada vez más caras.", "fuente": "MTM, 2025, p. 6" }, "derecha": { "titulo": "Para los jugadores", "texto": "Es volver a un lugar querido o conocer una época que no vivieron.", "fuente": "Addeo y Guerra, 2026, p. 35" } },
+        { "tipo": "pregunta_investigacion", "titulo": "Nuestra pregunta", "texto": "¿Cuánta nostalgia usan los videojuegos más vendidos de los años 2000 y 2010, y de qué forma?" },
+        { "tipo": "glosario", "titulo": "Dos palabras que vas a ver mucho", "items": [
+          { "termino": "AAA", "definicion": "Juegos de grandes empresas, con mucho presupuesto." },
+          { "termino": "Indie", "definicion": "Juegos de estudios independientes, sin el respaldo financiero de una gran editora." }
+        ] },
+        { "tipo": "frase", "texto": "Comparamos dos épocas (2000s contra 2010s) y dos tipos de estudio (AAA contra indie)." }
+      ],
+      "bloques": [
+        { "titulo": "Remakes en números", "texto": "Desde 2012 se han publicado {lit.mtm_remakes_desde_2012} remakes o remasters (MTM, 2025, p. 4)." },
+        { "titulo": "Nuestra pregunta", "texto": "¿Cuánta nostalgia usan los juegos más vendidos y de qué forma?" }
+      ],
+      "pista_juego": "Zona 1: el problema. Los bloques ? guardan los datos."
+    },
+
+    {
+      "nivel": "relevancia",
+      "zona": "z1",
+      "orden_despues_de": "1",
+      "titulo_corto": "¿Por qué importa?",
+      "frase_clave": "Entender la nostalgia sirve a la industria, a los jugadores, a quienes diseñan y a la memoria del medio.",
+      "nota_documento": "Esta sección amplía el '¿Por qué importa?' corto del nivel 1. Si se quiere en el modo Documento, hay que pasarla antes al grupo para aprobación; usa la fuente nueva de referencias_nuevas.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "¿Y a quién le sirve saber esto?" },
+        { "tipo": "enfoque", "icono": "empresa", "titulo": "A la industria", "texto": "Hacer un juego nuevo cuesta cada vez más y una idea original puede poner en riesgo cientos de millones de dólares. Por eso los remakes y las secuelas parecen una apuesta segura (MTM, 2025, p. 6).", "dato": "Pero en nuestros datos, {res.totales.Nula} de los {res.n} juegos más vendidos no usan ningún recurso nostálgico. Saber cuándo ayuda la nostalgia y cuándo no, es una decisión de negocio." },
+        { "tipo": "cifra", "cifra": "{lit.mtm_crash_unidades}", "etiqueta": "de copias vendió Crash Bandicoot N. Sane Trilogy (2017) hasta 2024", "fuente": "MTM, 2025, p. 5" },
+        { "tipo": "enfoque", "icono": "jugador", "titulo": "A los jugadores", "texto": "La nostalgia no es solo mirar atrás: es identidad, familia y comunidad. Jugar un clásico puede recordar a quien jugaba contigo o permitir que alguien joven viva una época que no conoció (Bowman et al., 2023; Addeo y Guerra, 2026, p. 35)." },
+        { "tipo": "cifra", "cifra": "{lit.mtm_comodidad}", "etiqueta": "de los jugadores encuestados dice que los remakes son reconfortantes y nostálgicos", "fuente": "MTM, 2025, p. 18" },
+        { "tipo": "enfoque", "icono": "diseno", "titulo": "A quienes diseñamos juegos", "texto": "Nuestros resultados muestran dos caminos distintos: los AAA se apoyan en su propia saga y los indie, en la estética y las reglas de una época. Elegir bien el camino es una decisión de diseño.", "dato": "Y no basta con copiar el look: la nostalgia pesa junto con la diversión y con que el juego se sienta auténtico (Chari et al., 2026)." },
+        { "tipo": "enfoque", "icono": "memoria", "titulo": "A la memoria del medio", "texto": "Los juegos también se pueden perder. Para Buñuel Fanconi (2025, pp. 258 y 261–262), un juego que no se rehace pierde impacto y desaparece de la memoria colectiva.", "dato": "Un estudio de preservación de 2023 encontró que {lit.vghf_no_disponibles} de los juegos clásicos publicados en Estados Unidos entre 1960 y 2009 no están a la venta (Video Game History Foundation, 2023)." },
+        { "tipo": "enfoque", "icono": "investigacion", "titulo": "A la investigación", "texto": "Casi no hay mediciones comparables de cuánta nostalgia usan los juegos. Nuestro Test de Nostalgia es corto y cualquiera puede repetirlo con otros juegos. Es un primer paso." },
+        { "tipo": "frase", "texto": "Si el pasado se volvió producto, vale la pena saber cómo se está usando." }
+      ],
+      "bloques": [
+        { "titulo": "Para la industria", "texto": "Un juego nuevo es caro y arriesgado. Los remakes parecen una apuesta segura (MTM, 2025, p. 6)." },
+        { "titulo": "Para los jugadores", "texto": "{lit.mtm_comodidad} dice que los remakes son reconfortantes y nostálgicos (MTM, 2025, p. 18)." },
+        { "titulo": "Para quienes diseñan", "texto": "Hay dos caminos: apoyarse en la saga propia o en la estética de una época." },
+        { "titulo": "Para la memoria", "texto": "{lit.vghf_no_disponibles} de los juegos clásicos (1960–2009) no están a la venta (Video Game History Foundation, 2023)." }
+      ],
+      "pista_juego": "¿Por qué importa? Rompe los cuatro bloques ? para saberlo."
+    },
+
+    {
+      "nivel": "2",
+      "zona": "z2",
+      "titulo_corto": "¿Qué es la nostalgia?",
+      "frase_clave": "La nostalgia no está en el juego: se activa en quien juega.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "La nostalgia es un recuerdo agridulce, pero positivo, de otros tiempos.", "fuente": "Sedikides et al., 2015, citado en Bowman et al., 2023" },
+        { "tipo": "frase", "texto": "El sociólogo Fred Davis dice que no es solo algo privado: es un fenómeno colectivo, ligado a la identidad y a los cambios de la vida. Y nace, circula y se dirige a los medios, también a los videojuegos.", "fuente": "Davis, 2023, citado en Addeo y Guerra, 2026, p. 33" },
+        { "tipo": "comparacion", "izquierda": { "titulo": "Nostalgia personal", "texto": "Extrañas algo que viviste tú." }, "derecha": { "titulo": "Nostalgia histórica", "texto": "Extrañas una época anterior a tu propia vida." }, "fuente": "Natterer, 2014, citado en Bowman et al., 2023" },
+        { "tipo": "glosario", "titulo": "Dos formas de recordar", "items": [
+          { "termino": "Memoria directa", "definicion": "Lo viví." },
+          { "termino": "Anemoia", "definicion": "No lo viví, pero lo siento como propio. Es una nostalgia por un tiempo reconstruido a través de medios culturales y digitales (Addeo y Guerra, 2026, p. 35)." },
+          { "termino": "Nostalgia vicaria", "definicion": "La de un jugador que se vincula con lo que imagina que vivieron otros, como sus padres o hermanos mayores (Bowman et al., 2023)." }
+        ] },
+        { "tipo": "tabla_visual", "titulo": "Tres profundidades de nostalgia (tipología de Davis)", "fuente": "Addeo y Guerra, 2026, pp. 34 y 39", "filas": [
+          { "nombre": "Simple", "texto": "El juego evoca el pasado tal como era, de forma idealizada y afectuosa.", "ejemplo": "Las salas arcade de la serie Yakuza" },
+          { "nombre": "Reflexiva", "texto": "El juego se relaciona de forma consciente o crítica con la memoria del medio.", "ejemplo": "Crash Bandicoot dentro de Uncharted 4" },
+          { "nombre": "Interpretada", "texto": "El juego convierte a la propia nostalgia en tema de reflexión.", "ejemplo": "Arcade Paradise" }
+        ] },
+        { "tipo": "frase", "texto": "Bosman llama romanticismo del videojuego a idealizar un pasado que se cree peor en tecnología, pero mejor en lo cultural y lo social.", "fuente": "Bosman, 2023, p. 29" },
+        { "tipo": "lista", "titulo": "Cuatro formas de idealizar los juegos viejos", "fuente": "Bosman, 2023, pp. 33–37", "items": [
+          "Retro gaming: juegos nuevos que copian la estética o las reglas de los antiguos.",
+          "Remakes y reboots: nuevas versiones de juegos anteriores.",
+          "Nostalgia de juego: adultos que vuelven a los juegos de su infancia.",
+          "Vintage play: jóvenes que valoran juegos viejos que no alcanzaron a vivir."
+        ] },
+        { "tipo": "cita", "texto": "Un juego no es intrínsecamente nostálgico o vintage, sino que se experimenta como tal.", "fuente": "Bosman, 2023, p. 40, traducción propia" },
+        { "tipo": "frase", "texto": "Por eso no medimos si un juego te hace sentir nostalgia. Medimos si trae recursos hechos para despertarla." }
+      ],
+      "bloques": [
+        { "titulo": "Nostalgia", "texto": "Un recuerdo agridulce, pero positivo, de otros tiempos." },
+        { "titulo": "Anemoia", "texto": "Nostalgia por una época que no viviste (Addeo y Guerra, 2026, p. 35)." },
+        { "titulo": "Simple, reflexiva, interpretada", "texto": "Tres profundidades de nostalgia según Davis (Addeo y Guerra, 2026)." },
+        { "titulo": "La idea clave", "texto": "“Un juego no es intrínsecamente nostálgico o vintage, sino que se experimenta como tal.” (Bosman, 2023, p. 40)" }
+      ],
+      "pista_juego": "Zona 2: el bosque de los recuerdos."
+    },
+
+    {
+      "nivel": "3",
+      "zona": "z2",
+      "titulo_corto": "Nostalgia y gamers",
+      "frase_clave": "Para los jugadores, la nostalgia es identidad, compañía y descubrimiento.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Un libro o una película te muestran el pasado. Un videojuego te deja volver a recorrerlo.", "fuente": "Bosman, 2023, p. 30" },
+        { "tipo": "cita", "texto": "No estamos mirando una fotografía de un lugar en el que estuvimos, sino que estamos volviendo a recorrer ese lugar, pero reconstruido.", "fuente": "Buñuel Fanconi, 2025, p. 267" },
+        { "tipo": "frase", "texto": "Volver a los juegos de una etapa importante refuerza quién eres. Según Davis, la nostalgia ayuda a renegociar la identidad en los cambios, como pasar de adolescente a adulto.", "fuente": "Addeo y Guerra, 2026, p. 33" },
+        { "tipo": "cifra", "cifra": "{lit.bowman_participantes}", "etiqueta": "jóvenes jugaron 10 minutos Double Dragon II (un juego de los 90) y contaron qué sintieron", "fuente": "Bowman et al., 2023" },
+        { "tipo": "frase", "texto": "Muchos recordaron a familiares con quienes jugaban. Algunos pensaron en las consolas de “cuando mi mamá era joven, antes de que yo naciera”. La nostalgia se juega con otros.", "fuente": "Bowman et al., 2023, traducción propia" },
+        { "tipo": "cifra", "cifra": "{lit.mtm_comodidad}", "etiqueta": "dice que los remakes son reconfortantes y nostálgicos", "fuente": "MTM, 2025, p. 18" },
+        { "tipo": "cifra", "cifra": "{lit.mtm_compartir}", "etiqueta": "los ve como una buena forma de compartir sus juegos favoritos con quienes no los jugaron", "fuente": "MTM, 2025, p. 19" },
+        { "tipo": "cifra", "cifra": "{lit.mtm_sin_original}", "etiqueta": "jugó un remake o remaster sin haber jugado el original", "fuente": "MTM, 2025, p. 20" },
+        { "tipo": "cifra", "cifra": "{lit.mtm_descubrir}", "etiqueta": "usa los remakes para descubrir juegos viejos por primera vez", "fuente": "MTM, 2025, p. 20" },
+        { "tipo": "barras_literatura", "titulo": "¿Un remake debe cambiar la historia o la jugabilidad?", "fuente": "MTM, 2025, p. 24", "barras": [
+          { "etiqueta": "Mejora si cambia", "cifra": "{lit.mtm_cambios_mejor}" },
+          { "etiqueta": "Ambas cosas", "cifra": "{lit.mtm_cambios_ambos}" },
+          { "etiqueta": "Empeora si cambia", "cifra": "{lit.mtm_cambios_peor}" }
+        ] },
+        { "tipo": "frase", "texto": "La nostalgia también es selectiva: queremos volver a los lugares que recordamos, no a los controles incómodos que olvidamos.", "fuente": "Buñuel Fanconi, 2025, p. 259" }
+      ],
+      "bloques": [
+        { "titulo": "Se juega con otros", "texto": "En un estudio, jóvenes recordaron a familiares con quienes jugaban (Bowman et al., 2023)." },
+        { "titulo": "Reconfortante", "texto": "{lit.mtm_comodidad} de los jugadores encuestados lo dice (MTM, 2025, p. 18)." },
+        { "titulo": "Descubrimiento", "texto": "{lit.mtm_sin_original} jugó un remake sin haber jugado el original (MTM, 2025, p. 20)." },
+        { "titulo": "Selectiva", "texto": "Queremos volver a los lugares, no a los controles incómodos (Buñuel Fanconi, 2025, p. 259)." }
+      ],
+      "pista_juego": "Los jugadores recuerdan, comparten y descubren."
+    },
+
+    {
+      "nivel": "4",
+      "zona": "z2",
+      "titulo_corto": "El negocio de la nostalgia",
+      "frase_clave": "Para la industria, la nostalgia es una apuesta de bajo riesgo.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Los juegos cada vez cuestan más. Una idea nueva puede arriesgar cientos de millones de dólares. Un remake se apoya en un público ya probado.", "fuente": "MTM, 2025, p. 6" },
+        { "tipo": "cifra", "cifra": "{lit.mtm_crash_unidades}", "etiqueta": "de copias vendió Crash Bandicoot N. Sane Trilogy (2017) hasta 2024", "fuente": "MTM, 2025, p. 5" },
+        { "tipo": "frase", "texto": "The Elder Scrolls IV: Oblivion Remastered (2025) vendió en un mes más que el original en 15 meses.", "fuente": "MTM, 2025, p. 5" },
+        { "tipo": "frase", "texto": "¿Qué compra el jugador? Chari y su equipo encontraron que la nostalgia y la diversión suben la satisfacción, sobre todo si el juego se siente auténtico. Y esa satisfacción influye en la compra.", "fuente": "Chari et al., 2026" },
+        { "tipo": "frase", "texto": "Para Addeo y Guerra la nostalgia se convierte en mercancía y la industria actúa como un vendedor de nostalgia.", "fuente": "Addeo y Guerra, 2026, p. 34" },
+        { "tipo": "cifra", "cifra": "{lit.addeo_casos}", "etiqueta": "juegos analizados que traen un videojuego retro jugable adentro. La mayoría reutiliza juegos de la propia empresa: nostalgia como identidad de marca.", "fuente": "Addeo y Guerra, 2026, p. 41" },
+        { "tipo": "frase", "texto": "Pero hay otra mirada: un juego que no se rehace pierde impacto y desaparece de la memoria colectiva. Rehacerlo es una necesidad cultural, no solo un negocio.", "fuente": "Buñuel Fanconi, 2025, pp. 258 y 261–262" },
+        { "tipo": "comparacion", "titulo": "Dos caminos para usar la nostalgia", "izquierda": { "titulo": "Volver a una obra", "texto": "Remakes, remasters y secuelas que reutilizan personajes y lugares de su saga. Relación explícita con un juego concreto.", "fuente": "Bosman, 2023, p. 40" }, "derecha": { "titulo": "Volver a una época", "texto": "Juegos nuevos que imitan la estética o las reglas de otra era. Relación implícita, con un género, no con un juego concreto. Típico de los indie.", "fuente": "Bosman, 2023, p. 40; Buñuel Fanconi, 2025, p. 264" } },
+        { "tipo": "frase", "texto": "De ahí salen nuestras hipótesis: los AAA irán por el primer camino y los indie por el segundo." }
+      ],
+      "bloques": [
+        { "titulo": "Menos riesgo", "texto": "Un remake se apoya en un público ya probado (MTM, 2025, p. 6)." },
+        { "titulo": "Marca", "texto": "La nostalgia puede ser un recurso de identidad de marca (Addeo y Guerra, 2026, p. 41)." },
+        { "titulo": "Camino 1: obra", "texto": "Volver a un juego concreto: relación explícita (Bosman, 2023, p. 40)." },
+        { "titulo": "Camino 2: época", "texto": "Imitar una época o un género: relación implícita (Bosman, 2023, p. 40)." }
+      ],
+      "pista_juego": "Dos caminos: volver a una obra o volver a una época."
+    },
+
+    {
+      "nivel": "5",
+      "zona": "z3",
+      "titulo_corto": "Método",
+      "frase_clave": "Medimos 12 juegos con las mismas 5 preguntas.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Hicimos un análisis de contenido cuantitativo: miramos cada juego y respondimos preguntas de Sí o No. Así cualquiera puede repetirlo y llegar a resultados comparables." },
+        { "tipo": "frase", "texto": "Analizamos el juego base. No cuentan expansiones, contenido descargable ni modos en línea aparte (por ejemplo, GTA Online no entra en GTA V)." },
+        { "tipo": "matriz_muestra", "titulo": "La muestra: 2 × 2", "texto": "Dos tipos de producción (AAA o indie) por dos décadas (2000s o 2010s). En cada casilla, los 3 juegos más vendidos. Total: {res.n} juegos.", "nota": "Se excluyeron los juegos que venían incluidos con una consola, porque esas ventas no reflejan una elección del jugador." },
+        { "tipo": "lista", "titulo": "Dos casos difíciles", "items": [
+          "Minecraft se cuenta como indie porque Mojang era un estudio independiente cuando salió, en 2011.",
+          "Garry's Mod se cuenta como indie porque nació como un mod hecho por un desarrollador individual, aunque luego lo publicó Valve."
+        ] },
+        { "tipo": "frase", "texto": "Un integrante del grupo respondió el test a los {res.n} juegos y otro verifica cada respuesta. Las dudas se marcan con asterisco (*) hasta confirmarlas. La meta es un acuerdo mínimo del 80 % entre ambos.", "fuente": "Procedimiento de Bowman et al., 2023" },
+        { "tipo": "glosario", "titulo": "Qué anotamos de cada juego", "items": [
+          { "termino": "P1 a P5", "definicion": "Las respuestas Sí o No del test." },
+          { "termino": "Puntos", "definicion": "De 0 a 4: la suma de los Sí de P1 a P4." },
+          { "termino": "Resultado", "definicion": "Relanzamiento, Alta, Moderada o Nula." },
+          { "termino": "Tipo y orientación", "definicion": "Si la nostalgia es simple, reflexiva o interpretada, y si apela a memoria directa o anemoia." },
+          { "termino": "Saga", "definicion": "Solo se registra si el juego es parte de una saga. No suma puntos." }
+        ] }
+      ],
+      "bloques": [
+        { "titulo": "Muestra", "texto": "{res.n} juegos: los 3 más vendidos de cada casilla AAA/indie por década." },
+        { "titulo": "Doble revisión", "texto": "Uno responde y otro verifica. Meta: 80 % de acuerdo." },
+        { "titulo": "Juego base", "texto": "No cuentan expansiones, DLC ni modos en línea aparte." },
+        { "titulo": "Casos difíciles", "texto": "Minecraft y Garry's Mod se cuentan como indie por su origen." }
+      ],
+      "pista_juego": "Zona 3: la fábrica de cartuchos. Aquí se arma el test."
+    },
+
+    {
+      "nivel": "6",
+      "zona": "z3",
+      "titulo_corto": "El Test de Nostalgia",
+      "frase_clave": "Cinco preguntas de Sí o No, cada una con respaldo teórico.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Nuestro test se inspira en el test de Bechdel: pocas preguntas cerradas que se pueden comprobar mirando la obra." },
+        { "tipo": "pregunta_test", "id": "P1" },
+        { "tipo": "pregunta_test", "id": "P2" },
+        { "tipo": "pregunta_test", "id": "P3" },
+        { "tipo": "pregunta_test", "id": "P4" },
+        { "tipo": "pregunta_test", "id": "P5" },
+        { "tipo": "diagrama_clasificacion", "titulo": "Cómo se clasifica un juego", "pasos": [
+          "¿P5 es Sí? Entonces es un Relanzamiento. Se reporta aparte.",
+          "Si no, suma los Sí de P1 a P4.",
+          "3 o 4 puntos: nostalgia alta.",
+          "1 o 2 puntos: nostalgia moderada.",
+          "0 puntos: nostalgia nula. El juego apuesta por la innovación.",
+          "Que sea parte de una saga se anota aparte y no suma."
+        ] },
+        { "tipo": "frase", "texto": "Cambiamos el test original. Antes, un AAA de saga sumaba dos puntos casi solo por ser de saga. Ahora cada pregunta mide algo distinto." },
+        { "tipo": "simulador", "titulo": "Hazle el test a tu juego favorito" }
+      ],
+      "preguntas": [
+        { "id": "P1", "etiqueta": "Estética", "pregunta": "¿Tiene estética retro a propósito?", "tema": "Lo visual y lo sonoro", "regla_clara": "Sí, si sus gráficos o su música imitan una generación anterior (pixel art, 8 o 16 bits, chiptune), aunque la tecnología de su época permitiera más.", "ejemplo": "Terraria", "fuente": "Bosman, 2023, p. 33" },
+        { "id": "P2", "etiqueta": "Reglas", "pregunta": "¿Tiene mecánicas retro?", "tema": "Las reglas", "regla_clara": "Sí, si tiene vidas limitadas, game over, muerte permanente o pérdida de progreso al morir.", "ejemplo": "Las vidas de New Super Mario Bros.; el modo Hardcore de Minecraft", "fuente": "Bosman, 2023, pp. 33–34; Chari et al., 2026" },
+        { "id": "P3", "etiqueta": "Saga", "pregunta": "¿Reutiliza elementos icónicos de su propia saga?", "tema": "El contenido", "regla_clara": "Sí, si trae de entregas anteriores un personaje, escenario, circuito, tema musical u objeto reconocible. Sin saga previa, es No. Los guiños sueltos no cuentan.", "ejemplo": "Los circuitos retro de Mario Kart; John Marston en Red Dead Redemption 2", "fuente": "Buñuel Fanconi, 2025, p. 261; MTM, 2025, p. 31" },
+        { "id": "P4", "etiqueta": "Formato", "pregunta": "¿Su formato es uno de los clásicos?", "tema": "El tipo de juego", "regla_clara": "Sí, si es de plataformas 2D de desplazamiento lateral, beat 'em up, shooter arcade por niveles, aventura de apuntar y hacer clic, o rol cenital estilo 16 bits.", "ejemplo": "Castle Crashers (beat 'em up)", "fuente": "Bosman, 2023, p. 40; Addeo y Guerra, 2026, p. 34" },
+        { "id": "P5", "etiqueta": "Relanzamiento", "pregunta": "¿Es una nueva versión de un juego anterior?", "tema": "Remake, remaster, reedición o versión mejorada", "regla_clara": "Sí, si se vende como remake, remaster, reedición o versión mejorada de un juego que ya existía.", "ejemplo": "Mario Kart 8 Deluxe", "fuente": "MTM, 2025, p. 11; Buñuel Fanconi, 2025, p. 258" }
+      ],
+      "bloques": [
+        { "titulo": "P1 · Estética", "texto": "¿Su look o su sonido imitan una generación anterior?" },
+        { "titulo": "P2 · Reglas", "texto": "¿Tiene vidas limitadas, game over o muerte permanente?" },
+        { "titulo": "P3 · Saga", "texto": "¿Trae personajes o lugares de su propia saga?" },
+        { "titulo": "P4 · Formato", "texto": "¿Es un formato clásico, como plataformas 2D o beat 'em up?" },
+        { "titulo": "P5 · Relanzamiento", "texto": "¿Es un remake, remaster o versión mejorada?" }
+      ],
+      "pista_juego": "Cinco bloques, cinco preguntas. Rómpelos en orden."
+    },
+
+    {
+      "nivel": "7",
+      "zona": "z4",
+      "titulo_corto": "Resultados",
+      "frase_clave": "{res.conNostalgia.cantidad} de los {res.n} juegos usan nostalgia, pero solo {res.totales.Alta} la usan con fuerza.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "{res.conNostalgia.cantidad} de los {res.n} juegos usan algún recurso nostálgico. Solo {res.totales.Alta} lo hacen con fuerza." },
+        { "tipo": "totales", "titulo": "Los 12 juegos, por resultado", "items": [
+          { "clave": "Alta", "etiqueta": "Nostalgia alta" },
+          { "clave": "Moderada", "etiqueta": "Nostalgia moderada" },
+          { "clave": "Nula", "etiqueta": "Sin nostalgia" },
+          { "clave": "Relanzamiento", "etiqueta": "Relanzamiento" }
+        ] },
+        { "tipo": "ficha_resultados", "agrupar_por": "resultado", "texto": "Toca un juego para ver sus cinco respuestas y por qué." },
+        { "tipo": "grafico", "grafico": "puntos-por-juego", "titulo": "Puntos por juego (0 a 4)" },
+        { "tipo": "grafico", "grafico": "preguntas-por-grupo", "titulo": "¿Qué pregunta suma cada grupo?", "texto": "Los AAA suman sobre todo por la saga (P3): {res.conteoPorPregunta.AAA.P3} de 6. Ningún indie la cumple ({res.conteoPorPregunta.Indie.P3}). Los indie suman por estética (P1), reglas (P2) y formato (P4). Ningún AAA tiene estética retro ({res.conteoPorPregunta.AAA.P1})." },
+        { "tipo": "comparacion", "titulo": "¿Qué tipo de nostalgia y de memoria?", "izquierda": { "titulo": "Los AAA con nostalgia", "texto": "Apelan a la memoria directa: recuerdos de entregas anteriores de su propia saga." }, "derecha": { "titulo": "Los indie con nostalgia", "texto": "Apelan a la anemoia: una estética de época que no hace falta haber vivido." } },
+        { "tipo": "frase", "texto": "Los {res.conNostalgia.cantidad} juegos con nostalgia usan nostalgia simple: evocan el pasado con cariño, sin reflexionar sobre él." }
+      ],
+      "bloques": [
+        { "titulo": "Alta", "texto": "{res.totales.Alta} juegos con nostalgia alta." },
+        { "titulo": "Moderada", "texto": "{res.totales.Moderada} juegos con nostalgia moderada." },
+        { "titulo": "Nula", "texto": "{res.totales.Nula} juegos sin recursos nostálgicos." },
+        { "titulo": "Relanzamiento", "texto": "{res.totales.Relanzamiento} relanzamiento, que se reporta aparte." }
+      ],
+      "pista_juego": "Zona 4: las montañas de datos. Cada plataforma es un juego."
+    },
+
+    {
+      "nivel": "8",
+      "zona": "z5",
+      "titulo_corto": "Hipótesis",
+      "frase_clave": "Las tendencias van en la dirección esperada, pero son pequeñas.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Teníamos tres hipótesis. Cada una es un jefe." },
+        { "tipo": "jefe", "id": "H1" },
+        { "tipo": "jefe", "id": "H2" },
+        { "tipo": "jefe", "id": "H3" },
+        { "tipo": "frase", "texto": "Ojo: con {res.n} juegos, esto describe la muestra. No se puede generalizar a toda la industria." }
+      ],
+      "jefes": [
+        { "id": "H1", "nombre": "H1 · Tiempo", "pregunta": "¿Los juegos de los 2010s usan más nostalgia que los de los 2000s?", "dato": "Promedio de puntos: 2000s = {res.promedios.2000s.texto}; 2010s = {res.promedios.2010s.texto}.", "veredicto": "TENDENCIA A FAVOR, DÉBIL", "explicacion": "Va en la dirección esperada, pero la diferencia es de apenas {res.diferenciaDecadas} puntos, con 6 juegos por década." },
+        { "id": "H2", "nombre": "H2 · Tipo de producción", "pregunta": "¿Los AAA y los indie usan la nostalgia de forma distinta?", "dato": "Promedio de puntos: AAA = {res.promedios.AAA.texto}; indie = {res.promedios.Indie.texto}. La saga (P3): {res.conteoPorPregunta.AAA.P3} de 6 AAA y {res.conteoPorPregunta.Indie.P3} de 6 indie. La estética (P1): {res.conteoPorPregunta.AAA.P1} de 6 AAA y {res.conteoPorPregunta.Indie.P1} de 6 indie.", "veredicto": "SE CUMPLE EN EL CÓMO, NO EN EL CUÁNTO", "explicacion": "La cantidad es casi igual, pero el camino es claramente distinto." },
+        { "id": "H3", "nombre": "H3 · Tipo de nostalgia", "pregunta": "¿La nostalgia que usan los más vendidos es mayormente simple?", "dato": "{res.conNostalgia.simples} de {res.conNostalgia.cantidad} juegos con nostalgia usan nostalgia simple.", "veredicto": "SE CUMPLE", "explicacion": "Evocan el pasado con cariño, sin cuestionarlo." }
+      ],
+      "bloques": [
+        { "titulo": "H1 · Tiempo", "texto": "Tendencia a favor, pero débil." },
+        { "titulo": "H2 · Producción", "texto": "Se cumple en el cómo, no en el cuánto." },
+        { "titulo": "H3 · Tipo", "texto": "Se cumple: toda la nostalgia es simple." }
+      ],
+      "pista_juego": "Zona 5: tres jefes. No pelean: te hacen una pregunta y tú eliges.",
+      "mecanica_jefe": "Cada jefe muestra su hipótesis con 2 o 3 opciones de respuesta. Al elegir, revela el dato y el veredicto. No hay vidas ni castigo."
+    },
+
+    {
+      "nivel": "9",
+      "zona": "z6",
+      "titulo_corto": "Discusión",
+      "frase_clave": "La nostalgia vende, pero no es obligatoria para vender.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "{res.conNostalgia.cantidad} de {res.n} juegos usan nostalgia, pero solo {res.totales.Alta} con fuerza. Entre los que no usan ninguna hay gigantes como GTA V y The Sims. La nostalgia es un apoyo, no la base.", "fuente": "Coherente con Chari et al., 2026" },
+        { "tipo": "comparacion", "titulo": "Dos estrategias que confirman la teoría", "izquierda": { "titulo": "AAA: la marca", "texto": "Se apoyan en su propia saga. Necesitan que recuerdes entregas anteriores (memoria directa).", "fuente": "MTM, 2025, p. 6; Addeo y Guerra, 2026, p. 41" }, "derecha": { "titulo": "Indie: la época", "texto": "Imitan pixel art, vidas limitadas y formatos clásicos. Le hablan igual a quien vivió esa época que a quien no (anemoia).", "fuente": "Bosman, 2023, p. 40; Buñuel Fanconi, 2025, p. 264" } },
+        { "tipo": "frase_grande", "texto": "Los AAA venden el recuerdo de un juego. Los indie venden el recuerdo de una época." },
+        { "tipo": "frase", "texto": "Hay un poco más de nostalgia en los 2010s. Puede deberse a que los primeros jugadores, niños en los 70 y 80, recién entonces tuvieron edad para extrañar su infancia. Pero la diferencia es pequeña.", "fuente": "Bosman, 2023, p. 27" },
+        { "tipo": "frase", "texto": "Toda la nostalgia que encontramos es simple: afecto sin reflexión. Los juegos que hacen de la nostalgia su tema, como Arcade Paradise, no están entre los más vendidos.", "fuente": "Addeo y Guerra, 2026, p. 42" },
+        { "tipo": "frase", "texto": "Solo {res.totales.Relanzamiento} de {res.n} es un relanzamiento. No contradice el auge de los remakes: nuestra muestra llega hasta 2019 y esa ola es más reciente. Un estudio con los 2020s probablemente encontraría más.", "fuente": "MTM, 2025, p. 4; Buñuel Fanconi, 2025, p. 260" }
+      ],
+      "bloques": [
+        { "titulo": "Apoyo, no base", "texto": "Grandes éxitos como GTA V y The Sims no usan nostalgia." },
+        { "titulo": "Marca vs época", "texto": "Los AAA venden el recuerdo de un juego; los indie, el de una época." },
+        { "titulo": "Nostalgia simple", "texto": "Todos los casos evocan con cariño, sin reflexionar." }
+      ],
+      "pista_juego": "Zona 6: casi llegamos. Lee los carteles del camino."
+    },
+
+    {
+      "nivel": "10",
+      "zona": "z6",
+      "titulo_corto": "Límites",
+      "frase_clave": "Lo que este estudio no puede decir.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "Todo estudio tiene límites. Estos son los nuestros." },
+        { "tipo": "limite", "numero": 1, "titulo": "Muestra pequeña", "texto": "Con {res.n} juegos elegidos a propósito, describimos estos juegos. No toda la industria." },
+        { "tipo": "limite", "numero": 2, "titulo": "Medimos el juego, no al jugador", "texto": "Detectamos recursos hechos para despertar nostalgia, no si alguien la siente.", "fuente": "Bosman, 2023, p. 40" },
+        { "tipo": "limite", "numero": 3, "titulo": "Verificación en proceso", "texto": "Respondimos el test con conocimiento de los juegos y fuentes publicadas, sin jugar cada título para el estudio. Algunas respuestas esperan al segundo codificador (*)." },
+        { "tipo": "limite", "numero": 4, "titulo": "La P3 favorece a los AAA", "texto": "Solo un juego con saga previa puede decir Sí en la P3. Por eso miramos los caminos por separado." },
+        { "tipo": "limite", "numero": 5, "titulo": "Un relanzamiento dentro de los promedios", "texto": "Mario Kart 8 Deluxe es Relanzamiento, pero sus puntos de P1 a P4 sí entran en los promedios." },
+        { "tipo": "limite", "numero": 6, "titulo": "Casos discutibles", "texto": "Minecraft y Garry's Mod se clasificaron como indie por su origen. Las ventas de World of Goo son una estimación." },
+        { "tipo": "limite", "numero": 7, "titulo": "Presencia, no intensidad", "texto": "Un solo guiño y un juego construido entero sobre ese recurso reciben el mismo Sí." },
+        { "tipo": "lista", "titulo": "Qué sigue", "items": [
+          "Ampliar la muestra e incluir los años 2020.",
+          "Sumar una encuesta a jugadores para medir si la nostalgia se siente.",
+          "Codificar con dos personas independientes desde el inicio."
+        ] }
+      ],
+      "bloques": [
+        { "titulo": "Cartel 1", "texto": "Solo {res.n} juegos: no sirve para generalizar." },
+        { "titulo": "Cartel 2", "texto": "Medimos el juego, no lo que siente quien juega." },
+        { "titulo": "Cartel 3", "texto": "El test mide presencia, no intensidad." }
+      ],
+      "pista_juego": "Carteles de advertencia: lo que el estudio no puede decir."
+    },
+
+    {
+      "nivel": "11",
+      "zona": "z6",
+      "titulo_corto": "Conclusión",
+      "frase_clave": "La nostalgia es una herramienta, y cada tipo de estudio la usa a su manera.",
+      "pantallas": [
+        { "tipo": "frase", "texto": "La nostalgia está en más de la mitad de los juegos más vendidos, casi siempre como apoyo y de forma simple." },
+        { "tipo": "comparacion", "izquierda": { "titulo": "Grandes empresas", "texto": "La usan como estrategia de marca: sus propios personajes, circuitos y éxitos. Bajo riesgo, memoria directa." }, "derecha": { "titulo": "Estudios independientes", "texto": "La usan como recurso de diseño: estética, reglas y formatos de una época. Le hablan hasta a quien no la vivió." } },
+        { "tipo": "cita", "texto": "recordar jugando y jugar a recordar", "fuente": "Buñuel Fanconi, 2025, p. 267" },
+        { "tipo": "cierre" }
+      ],
+      "bloques": [
+        { "titulo": "Conclusión", "texto": "No hay una sola forma de usar la nostalgia. Los AAA la usan como marca; los indie, como diseño." }
+      ],
+      "pista_juego": "¡La bandera! Llega hasta arriba."
+    },
+
+    {
+      "nivel": "12",
+      "zona": "z6",
+      "titulo_corto": "Créditos",
+      "frase_clave": "Gracias por jugar.",
+      "pantallas": [
+        { "tipo": "creditos", "equipo": "Justin Peñafiel · Naomi Armas · Joel Castillo", "curso": "Taller de Investigación · Prof. Juan Pablo Viteri · Universidad San Francisco de Quito · 2026" },
+        { "tipo": "texto_pequeno", "texto": "{global.aviso_ia}" },
+        { "tipo": "texto_pequeno", "texto": "{global.aviso_copyright}" },
+        { "tipo": "enlace", "texto": "Ver todas las referencias (APA 7)", "destino": "documento#nivel-12" }
+      ],
+      "bloques": [],
+      "pista_juego": "Fin. Gracias por jugar."
+    }
+  ]
+}
