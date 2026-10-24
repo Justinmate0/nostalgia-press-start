@@ -26,6 +26,49 @@
     <!-- NIVEL 0 · PRESS START                                        -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-0" data-nivel="0" aria-labelledby="titulo-nivel-0">
+
+      <!-- Ilustración decorativa propia (sin copiar consolas reales): cielo de estrellas en
+           píxeles y un cartucho genérico. Solo visual: aria-hidden y sin interacción. -->
+      <svg class="portada-estrellas" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+        <defs>
+          <pattern id="px-estrellas" width="140" height="140" patternUnits="userSpaceOnUse">
+            <g class="estrellas-a" fill="#B9B2D9">
+              <rect x="12" y="18" width="2" height="2"/>
+              <rect x="64" y="40" width="4" height="4"/>
+              <rect x="118" y="10" width="2" height="2"/>
+              <rect x="36" y="96" width="2" height="2"/>
+              <rect x="128" y="76" width="4" height="4"/>
+            </g>
+            <g class="estrellas-b" fill="#B9B2D9">
+              <rect x="40" y="6" width="2" height="2"/>
+              <rect x="92" y="58" width="2" height="2"/>
+              <rect x="8" y="64" width="4" height="4"/>
+              <rect x="76" y="118" width="2" height="2"/>
+              <rect x="108" y="128" width="2" height="2"/>
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#px-estrellas)"/>
+      </svg>
+
+      <svg class="portada-cartucho" viewBox="0 0 16 20" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+        <!-- Cuerpo -->
+        <rect x="1" y="1" width="14" height="17" fill="#251E4A"/>
+        <!-- Esquinas recortadas y muesca inferior izquierda -->
+        <rect x="1" y="1" width="1" height="1" fill="#0E0B1F"/>
+        <rect x="14" y="1" width="1" height="1" fill="#0E0B1F"/>
+        <rect x="1" y="15" width="2" height="3" fill="#0E0B1F"/>
+        <!-- Ranuras de agarre -->
+        <rect x="3" y="2" width="10" height="1" fill="#1A1535"/>
+        <rect x="3" y="4" width="10" height="1" fill="#1A1535"/>
+        <!-- Etiqueta -->
+        <rect x="3" y="6" width="10" height="7" fill="#B9B2D9"/>
+        <rect x="4" y="7" width="8" height="1" fill="#F2EFFF"/>
+        <rect x="4" y="9" width="5" height="1" fill="#FFCC33"/>
+        <!-- Conector inferior -->
+        <rect x="4" y="18" width="9" height="2" fill="#FFCC33"/>
+      </svg>
+
       <p class="nivel-etiqueta">1 PLAYER</p>
       <h1 id="titulo-nivel-0">La nostalgia como recurso de desarrollo y estrategia comercial en videojuegos contemporáneos</h1>
       <p class="subtitulo">Un análisis de contenido de los 12 videojuegos más vendidos de dos décadas</p>

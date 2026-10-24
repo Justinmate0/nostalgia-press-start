@@ -307,6 +307,51 @@ h4 {
   padding-bottom: 3rem;
 }
 
+#nivel-0 {
+  overflow: hidden;
+}
+
+/* El texto de la portada siempre por encima de la ilustración. */
+#nivel-0 > :not(svg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cielo de estrellas en píxeles (15 % de opacidad). */
+.portada-estrellas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.portada-estrellas .estrellas-a {
+  animation: titilar 6s ease-in-out infinite;
+}
+
+.portada-estrellas .estrellas-b {
+  animation: titilar 6s ease-in-out -3s infinite;
+}
+
+@keyframes titilar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Cartucho genérico detrás del título (25 % de opacidad); en celular no se muestra. */
+.portada-cartucho {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 240px;
+  height: auto;
+  transform: translate(-50%, -118%) rotate(-8deg);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
 #nivel-0 .nivel-etiqueta {
   margin-bottom: 2rem;
 }
@@ -698,6 +743,10 @@ tbody tr:last-child td {
 
   .boton {
     padding: 0.85rem 1.1rem 0.75rem;
+  }
+
+  .portada-cartucho {
+    display: none;
   }
 
   .botones-finales .boton {
