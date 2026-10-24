@@ -1,2 +1,843 @@
-/* estilos.css — diseño visual (BRIEF sección 7). Se implementa en la Fase 2.
-   En la Fase 1 no hay diseño: solo la estructura del contenido. */
+/* estilos.css — Diseño visual de "Nostalgia: Press Start" (BRIEF sección 7).
+   Dirección de arte: "consola de los 90 vista con ojos de hoy". Fondo oscuro tipo CRT,
+   acentos saturados de menú de 16 bits, bordes pixelados; el texto de lectura es limpio
+   y moderno. Fase 2: sin interactivos; navegación y modo lectura llegan en la Fase 3. */
+
+/* ------------------------------------------------------------------ */
+/* 1. Tokens (BRIEF 7.2 y 7.3)                                         */
+/* ------------------------------------------------------------------ */
+
+:root {
+  color-scheme: dark;
+
+  /* Paleta */
+  --fondo: #0E0B1F;
+  --superficie: #1A1535;
+  --superficie-2: #251E4A;
+  --texto: #F2EFFF;
+  --texto-suave: #B9B2D9;
+  --acento: #FFCC33;
+  --aaa: #4FA3FF;
+  --indie: #3DDC97;
+  --alta: #FF5C8A;
+  --moderada: #FFA94D;
+  --nula: #6C6890;
+  --relanzamiento: #B07CFF;
+
+  /* Derivados */
+  --acento-oscuro: #B8860B;   /* sombra "pixel" de los botones amarillos */
+  --linea: #332B5E;           /* bordes y separadores sutiles */
+
+  /* Tipografía */
+  --fuente-pixel: "Press Start 2P", "Courier New", monospace;
+  --fuente-lectura: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-datos: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --tamano-lectura: 1.125rem;  /* 18 px */
+  --interlineado: 1.65;
+  --ancho-linea: 68ch;
+
+  /* Layout */
+  --ancho-contenido: 760px;
+  --espacio: 1.25rem;
+  --pixel: 4px;               /* unidad de los detalles pixelados */
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Base y legibilidad                                               */
+/* ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  background: var(--fondo);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-lectura);
+  font-size: var(--tamano-lectura);
+  line-height: var(--interlineado);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Líneas de escaneo CRT muy suaves (BRIEF 7.4): opacidad total 5 %, nunca más de 6 %. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 1) 2px,
+    rgba(0, 0, 0, 1) 3px
+  );
+  opacity: 0.05;
+}
+
+/* Viñeta de tubo: oscurece apenas los bordes de la pantalla. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+::selection {
+  background: var(--acento);
+  color: var(--fondo);
+}
+
+/* Foco visible en todo lo navegable con teclado (regla 5 de AGENTS.md). */
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 3px;
+}
+
+a {
+  color: var(--acento);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+p,
+li,
+blockquote,
+dd {
+  max-width: var(--ancho-linea);
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+ul,
+ol {
+  margin: 0 0 1.4em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.55em;
+}
+
+li > ul,
+li > ol {
+  margin-top: 0.55em;
+  margin-bottom: 0;
+}
+
+li::marker {
+  color: var(--acento);
+  font-family: var(--fuente-datos);
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* Solo para lectores de pantalla (mantiene la semántica sin ocupar espacio). */
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Fuente pixelada solo en títulos cortos, cifras y botones; mínimo 14 px. */
+.pixel,
+.nivel-etiqueta,
+.boton,
+.dato-cifra {
+  font-family: var(--fuente-pixel);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Cabecera (se llena en la Fase 3)                                 */
+/* ------------------------------------------------------------------ */
+
+#cabecera:empty,
+#mapa:empty {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Niveles: columna de lectura centrada a 760 px (BRIEF 7.5)         */
+/* ------------------------------------------------------------------ */
+
+#contenido {
+  display: block;
+}
+
+.nivel {
+  width: 100%;
+  max-width: calc(var(--ancho-contenido) + 2 * var(--espacio));
+  margin: 0 auto;
+  padding: 2.5rem var(--espacio) 2.5rem;
+  position: relative;
+}
+
+/* Separador pixelado entre niveles: camino punteado del mapa de mundo. */
+.nivel + .nivel::before {
+  content: "";
+  display: block;
+  height: var(--pixel);
+  width: min(100%, var(--ancho-contenido));
+  margin: 0 auto 2rem;
+  background: repeating-linear-gradient(
+    to right,
+    var(--linea) 0,
+    var(--linea) calc(var(--pixel) * 2),
+    transparent calc(var(--pixel) * 2),
+    transparent calc(var(--pixel) * 4)
+  );
+}
+
+/* Etiqueta del nivel ("Mundo 1 · El problema") en fuente pixelada con una "moneda". */
+.nivel-etiqueta {
+  display: block;
+  margin: 0 0 1.25rem;
+  color: var(--acento);
+  max-width: none;
+}
+
+.nivel-etiqueta::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.7rem;
+  vertical-align: -1px;
+  background: var(--acento);
+  /* Moneda de 4×4 píxeles sin las esquinas */
+  clip-path: polygon(
+    25% 0, 75% 0, 75% 25%, 100% 25%, 100% 75%, 75% 75%,
+    75% 100%, 25% 100%, 25% 75%, 0 75%, 0 25%, 25% 25%
+  );
+}
+
+/* Titular del nivel: una frase larga, por eso va en la fuente de lectura. */
+.nivel-titular {
+  margin: 0 0 1.5rem;
+  padding-bottom: 1rem;
+  font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  max-width: 24ch;
+  color: #FFFFFF;
+  text-wrap: balance;
+  border-bottom: var(--pixel) solid var(--acento);
+}
+
+h3 {
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 40ch;
+  color: #FFFFFF;
+}
+
+h4 {
+  margin: 1.75rem 0 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--texto);
+}
+
+.nivel-titular + p,
+.nivel-titular + ol,
+.nivel-titular + ul,
+.nivel-titular + h3 {
+  margin-top: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Nivel 0 · PRESS START (portada)                                  */
+/* ------------------------------------------------------------------ */
+
+#nivel-0 {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+#nivel-0 {
+  overflow: hidden;
+}
+
+/* El texto de la portada siempre por encima de la ilustración. */
+#nivel-0 > :not(svg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cielo de estrellas en píxeles (15 % de opacidad). */
+.portada-estrellas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.portada-estrellas .estrellas-a {
+  animation: titilar 6s ease-in-out infinite;
+}
+
+.portada-estrellas .estrellas-b {
+  animation: titilar 6s ease-in-out -3s infinite;
+}
+
+@keyframes titilar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Cartucho genérico detrás del título (25 % de opacidad); en celular no se muestra. */
+.portada-cartucho {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 240px;
+  height: auto;
+  transform: translate(-50%, -118%) rotate(-8deg);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+#nivel-0 .nivel-etiqueta {
+  margin-bottom: 2rem;
+}
+
+#nivel-0 h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.75rem, 1.1rem + 2.8vw, 2.875rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  max-width: 22ch;
+  color: #FFFFFF;
+  text-wrap: balance;
+}
+
+#nivel-0 .subtitulo {
+  margin: 0 0 2rem;
+  font-size: 1.25rem;
+  color: var(--texto-suave);
+  max-width: 44ch;
+  text-wrap: balance;
+}
+
+#nivel-0 .autores,
+#nivel-0 .curso {
+  margin: 0 0 0.4rem;
+  font-family: var(--fuente-datos);
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  max-width: none;
+}
+
+#nivel-0 .autores strong,
+#nivel-0 .curso strong {
+  color: var(--texto);
+}
+
+#nivel-0 .curso {
+  margin-bottom: 2.75rem;
+}
+
+#nivel-0 .texto-pequeno {
+  margin: 1.75rem 0 0;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  max-width: 44ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. Botones                                                          */
+/* ------------------------------------------------------------------ */
+
+/* Borde "pixelado" con sombra escalonada en vez de clip-path, para que el foco no se recorte. */
+.boton {
+  display: inline-block;
+  padding: 0.95rem 1.5rem 0.85rem;
+  background: var(--acento);
+  color: var(--fondo);
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    0 var(--pixel) 0 0 var(--acento-oscuro),
+    var(--pixel) 0 0 0 var(--acento-oscuro),
+    var(--pixel) var(--pixel) 0 0 var(--acento-oscuro);
+  transition: transform 80ms ease-out, box-shadow 80ms ease-out;
+}
+
+.boton:hover {
+  background: #FFD966;
+  color: var(--fondo);
+  text-decoration: none;
+}
+
+.boton:active {
+  transform: translate(var(--pixel), var(--pixel));
+  box-shadow: none;
+}
+
+.boton:focus-visible {
+  outline-color: var(--texto);
+}
+
+/* Secundario: solo borde, misma sombra escalonada. */
+.boton-secundario {
+  background: transparent;
+  color: var(--acento);
+  box-shadow:
+    inset 0 0 0 3px var(--acento),
+    0 var(--pixel) 0 0 var(--acento-oscuro),
+    var(--pixel) 0 0 0 var(--acento-oscuro),
+    var(--pixel) var(--pixel) 0 0 var(--acento-oscuro);
+}
+
+.boton-secundario:hover {
+  background: rgba(255, 204, 51, 0.12);
+  color: var(--acento);
+}
+
+.boton-secundario:active {
+  box-shadow: inset 0 0 0 3px var(--acento);
+}
+
+.botones-finales {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  margin-top: 2.5rem;
+  max-width: none;
+}
+
+/* El latido del botón de inicio: un guiño arcade, muy lento. */
+.boton-empezar {
+  animation: latido 2.4s ease-in-out infinite;
+}
+
+@keyframes latido {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+/* ------------------------------------------------------------------ */
+/* 7. Tarjetas: datos destacados, citas, preguntas, hipótesis           */
+/* ------------------------------------------------------------------ */
+
+/* Esquinas pixeladas en escalones (BRIEF 7.4). */
+.tarjeta,
+.dato-destacado,
+.pregunta,
+.hipotesis {
+  --r1: calc(var(--pixel) * 1);
+  --r2: calc(var(--pixel) * 2);
+  background: var(--superficie);
+  padding: 1.5rem 1.6rem;
+  margin: 1.75rem 0;
+  clip-path: polygon(
+    0 var(--r2), var(--r1) var(--r2), var(--r1) var(--r1), var(--r2) var(--r1), var(--r2) 0,
+    calc(100% - var(--r2)) 0, calc(100% - var(--r2)) var(--r1), calc(100% - var(--r1)) var(--r1),
+    calc(100% - var(--r1)) var(--r2), 100% var(--r2),
+    100% calc(100% - var(--r2)), calc(100% - var(--r1)) calc(100% - var(--r2)),
+    calc(100% - var(--r1)) calc(100% - var(--r1)), calc(100% - var(--r2)) calc(100% - var(--r1)),
+    calc(100% - var(--r2)) 100%, var(--r2) 100%, var(--r2) calc(100% - var(--r1)),
+    var(--r1) calc(100% - var(--r1)), var(--r1) calc(100% - var(--r2)), 0 calc(100% - var(--r2))
+  );
+}
+
+.tarjeta > :first-child,
+.dato-destacado > :first-child,
+.pregunta > :first-child,
+.hipotesis > :first-child {
+  margin-top: 0;
+}
+
+.tarjeta > :last-child,
+.dato-destacado > :last-child,
+.pregunta > :last-child,
+.hipotesis > :last-child {
+  margin-bottom: 0;
+}
+
+/* Dato destacado: tarjeta con franja de acento y la cifra en fuente pixelada. */
+.dato-destacado {
+  border-left: var(--pixel) solid var(--acento);
+  background: var(--superficie-2);
+}
+
+.dato-destacado p {
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.dato-destacado .dato-cifra {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--acento);
+}
+
+/* Cita en bloque. */
+.cita {
+  margin: 2rem 0;
+  padding: 0.25rem 0 0.25rem 1.4rem;
+  border-left: var(--pixel) solid var(--acento);
+}
+
+.cita p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #FFFFFF;
+}
+
+.cita .cita-fuente {
+  margin-top: 0.75rem;
+  font-family: var(--fuente-datos);
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* Preguntas del test (nivel 6). En la Fase 4 se convierten en tarjetas de poder. */
+.pregunta {
+  border-top: var(--pixel) solid var(--acento);
+}
+
+.pregunta h3 {
+  font-size: 1.2rem;
+}
+
+.pregunta h3 em {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--texto-suave);
+}
+
+.pregunta ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.pregunta li {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--linea);
+}
+
+/* Hipótesis (nivel 8). En la Fase 5 se convierten en "jefes". */
+.hipotesis {
+  border-top: var(--pixel) solid var(--superficie-2);
+}
+
+.hipotesis h3 {
+  font-size: 1.2rem;
+}
+
+.hipotesis > p em {
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: #FFFFFF;
+}
+
+.hipotesis ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.hipotesis li {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--linea);
+}
+
+/* ------------------------------------------------------------------ */
+/* 8. Tablas (IBM Plex Mono) con scroll interno en pantallas angostas    */
+/* ------------------------------------------------------------------ */
+
+.tabla-scroll {
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--superficie);
+}
+
+table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-family: var(--fuente-lectura);
+  font-size: 1rem;
+  line-height: 1.45;
+  background: transparent;
+}
+
+/* Plex Mono solo en encabezados y en celdas numéricas (clase .num). */
+th,
+td.num,
+.num {
+  font-family: var(--fuente-datos);
+  font-size: 0.95rem;
+}
+
+td.num {
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  text-align: left;
+  padding: 0 0 0.6rem;
+  color: var(--texto-suave);
+}
+
+th,
+td {
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--linea);
+}
+
+thead th {
+  background: var(--superficie-2);
+  color: var(--acento);
+  font-weight: 600;
+  border-bottom: 2px solid var(--acento);
+}
+
+tbody th {
+  font-weight: 600;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* 9. Créditos y referencias                                           */
+/* ------------------------------------------------------------------ */
+
+.referencias {
+  list-style: none;
+  padding-left: 0;
+}
+
+.referencias li {
+  padding-left: 2em;
+  text-indent: -2em;
+  margin-bottom: 1em;
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: var(--ancho-linea);
+}
+
+#nivel-12 .nivel-titular {
+  font-size: 1.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 10. Responsive: celular (< 700 px, probado a 360 px)                 */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 699px) {
+  :root {
+    --espacio: 1rem;
+  }
+
+  .nivel {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .nivel + .nivel::before {
+    margin-bottom: 1.5rem;
+  }
+
+  .nivel-titular {
+    font-size: 1.55rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 1.9rem;
+  }
+
+  .tarjeta,
+  .dato-destacado,
+  .pregunta,
+  .hipotesis {
+    padding: 1.2rem 1.1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dato-destacado p,
+  .cita p {
+    font-size: 1.1rem;
+  }
+
+  .cita {
+    padding-left: 1rem;
+  }
+
+  .boton {
+    padding: 0.85rem 1.1rem 0.75rem;
+  }
+
+  .portada-cartucho {
+    display: none;
+  }
+
+  .botones-finales .boton {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Tabla con scroll interno: aviso visible y sombra en el borde derecho. */
+  .tabla-scroll {
+    position: relative;
+    background:
+      linear-gradient(to right, var(--superficie) 30%, rgba(26, 21, 53, 0)),
+      linear-gradient(to left, var(--superficie) 30%, rgba(26, 21, 53, 0)) 100% 0,
+      linear-gradient(to right, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0)),
+      linear-gradient(to left, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0)) 100% 0;
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+
+  .tabla-scroll::before {
+    content: "Desliza para ver toda la tabla →";
+    display: block;
+    position: sticky;
+    left: 0;
+    width: max-content;
+    max-width: 100%;
+    padding: 0.6rem 0.7rem 0.4rem;
+    font-family: var(--fuente-datos);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+  }
+
+  table {
+    min-width: 560px;
+    font-size: 0.9rem;
+  }
+
+  th,
+  td {
+    padding: 0.6rem 0.7rem;
+  }
+
+  tbody th {
+    white-space: normal;
+  }
+}
+
+/* Pantallas muy angostas (< 400 px): la etiqueta pixelada baja a 12 px y el nombre
+   del nivel pasa a su propia línea, para que no se parta en lugares raros. */
+@media (max-width: 399px) {
+  .nivel-etiqueta {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    line-height: 1.8;
+  }
+
+  .nivel-etiqueta .nivel-separador {
+    display: none;
+  }
+
+  .nivel-etiqueta .nivel-nombre {
+    display: block;
+  }
+
+  #nivel-0 .nivel-etiqueta {
+    font-size: 0.875rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 11. Movimiento reducido: sin animaciones ni efectos de pantalla       */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

@@ -7,6 +7,10 @@
   <meta name="description" content="Web académica interactiva: análisis de contenido de los 12 videojuegos más vendidos de las décadas de 2000 y 2010 y su uso de la nostalgia. Taller de Investigación, USFQ, 2026.">
   <!-- Ícono vacío para evitar el 404 de favicon.ico; en assets/ irá un ícono pixelado propio -->
   <link rel="icon" href="data:,">
+  <!-- Tipografías (BRIEF 7.3): Press Start 2P para títulos cortos, IBM Plex Sans para lectura, IBM Plex Mono para datos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Press+Start+2P&display=swap">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -22,7 +26,50 @@
     <!-- NIVEL 0 · PRESS START                                        -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-0" data-nivel="0" aria-labelledby="titulo-nivel-0">
-      <p class="nivel-etiqueta">PRESS START</p>
+
+      <!-- Ilustración decorativa propia (sin copiar consolas reales): cielo de estrellas en
+           píxeles y un cartucho genérico. Solo visual: aria-hidden y sin interacción. -->
+      <svg class="portada-estrellas" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+        <defs>
+          <pattern id="px-estrellas" width="140" height="140" patternUnits="userSpaceOnUse">
+            <g class="estrellas-a" fill="#B9B2D9">
+              <rect x="12" y="18" width="2" height="2"/>
+              <rect x="64" y="40" width="4" height="4"/>
+              <rect x="118" y="10" width="2" height="2"/>
+              <rect x="36" y="96" width="2" height="2"/>
+              <rect x="128" y="76" width="4" height="4"/>
+            </g>
+            <g class="estrellas-b" fill="#B9B2D9">
+              <rect x="40" y="6" width="2" height="2"/>
+              <rect x="92" y="58" width="2" height="2"/>
+              <rect x="8" y="64" width="4" height="4"/>
+              <rect x="76" y="118" width="2" height="2"/>
+              <rect x="108" y="128" width="2" height="2"/>
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#px-estrellas)"/>
+      </svg>
+
+      <svg class="portada-cartucho" viewBox="0 0 16 20" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+        <!-- Cuerpo -->
+        <rect x="1" y="1" width="14" height="17" fill="#251E4A"/>
+        <!-- Esquinas recortadas y muesca inferior izquierda -->
+        <rect x="1" y="1" width="1" height="1" fill="#0E0B1F"/>
+        <rect x="14" y="1" width="1" height="1" fill="#0E0B1F"/>
+        <rect x="1" y="15" width="2" height="3" fill="#0E0B1F"/>
+        <!-- Ranuras de agarre -->
+        <rect x="3" y="2" width="10" height="1" fill="#1A1535"/>
+        <rect x="3" y="4" width="10" height="1" fill="#1A1535"/>
+        <!-- Etiqueta -->
+        <rect x="3" y="6" width="10" height="7" fill="#B9B2D9"/>
+        <rect x="4" y="7" width="8" height="1" fill="#F2EFFF"/>
+        <rect x="4" y="9" width="5" height="1" fill="#FFCC33"/>
+        <!-- Conector inferior -->
+        <rect x="4" y="18" width="9" height="2" fill="#FFCC33"/>
+      </svg>
+
+      <p class="nivel-etiqueta">1 PLAYER</p>
       <h1 id="titulo-nivel-0">La nostalgia como recurso de desarrollo y estrategia comercial en videojuegos contemporáneos</h1>
       <p class="subtitulo">Un análisis de contenido de los 12 videojuegos más vendidos de dos décadas</p>
       <p class="autores"><strong>Autores:</strong> Justin Peñafiel · Naomi Armas · Joel Castillo</p>
@@ -35,7 +82,7 @@
     <!-- NIVEL 1 · El problema                                        -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-1" data-nivel="1" aria-labelledby="titulo-nivel-1">
-      <p class="nivel-etiqueta">Mundo 1 · El problema</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 1</span><span class="nivel-separador"> · </span><span class="nivel-nombre">El problema</span></p>
       <h2 id="titulo-nivel-1" class="nivel-titular">La industria mira cada vez más hacia atrás. Queríamos medir cuánto.</h2>
 
       <p>En los últimos años, la industria del videojuego ha llenado su calendario de remakes, remasters y juegos con estética de otras épocas. Solo desde 2012 se han publicado unos 200 remakes o remasters, y para 2025 se anunciaron alrededor de 30 más (MTM, 2025, p. 4, con datos de Kotaku y GameSpot). Al mismo tiempo, estudios independientes llenan las tiendas de juegos con gráficos pixelados que imitan las consolas de 8 y 16 bits (Bosman, 2023, p. 27).</p>
@@ -64,7 +111,7 @@
     <!-- NIVEL 2 · ¿Qué es la nostalgia?                              -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-2" data-nivel="2" aria-labelledby="titulo-nivel-2">
-      <p class="nivel-etiqueta">Mundo 2 · ¿Qué es la nostalgia?</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 2</span><span class="nivel-separador"> · </span><span class="nivel-nombre">¿Qué es la nostalgia?</span></p>
       <h2 id="titulo-nivel-2" class="nivel-titular">La nostalgia no está en el juego: se activa en quien juega.</h2>
 
       <h3>2.1 Una emoción social, no solo privada</h3>
@@ -84,6 +131,7 @@
 
       <h3>2.3 Tres niveles de profundidad (tipología de Davis)</h3>
       <p>Addeo y Guerra (2026, pp. 34 y 39) aplican la tipología de Davis a los videojuegos:</p>
+      <div class="tabla-scroll" role="region" aria-label="Tipología de Davis aplicada a los videojuegos" tabindex="0">
       <table>
         <thead>
           <tr>
@@ -110,6 +158,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <h3>2.4 El romanticismo del videojuego</h3>
       <p>Bosman (2023, p. 29) agrupa estos fenómenos bajo el concepto de <strong>romanticismo del videojuego</strong>: la idealización de un pasado que se presume tecnológicamente inferior pero cultural, social o espiritualmente superior al presente. Distingue cuatro modos en que los videojuegos se vuelven objeto de esa idealización (pp. 33–37):</p>
@@ -133,7 +182,7 @@
     <!-- NIVEL 3 · Nostalgia y gamers                                 -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-3" data-nivel="3" aria-labelledby="titulo-nivel-3">
-      <p class="nivel-etiqueta">Mundo 3 · Nostalgia y gamers</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 3</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Nostalgia y gamers</span></p>
       <h2 id="titulo-nivel-3" class="nivel-titular">Para los jugadores, la nostalgia es identidad, compañía y descubrimiento.</h2>
 
       <h3>3.1 Una máquina del tiempo jugable</h3>
@@ -152,25 +201,25 @@
       <p>El informe de MTM (2025) muestra lo mismo desde el mercado:</p>
 
       <aside class="dato-destacado">
-        <p><strong class="dato-cifra">80 %</strong> de los jugadores encuestados está de acuerdo en que los remakes y remasters "son reconfortantes y nostálgicos" (MTM, 2025, p. 18).</p>
+        <p><strong class="dato-cifra">80&nbsp;%</strong> de los jugadores encuestados está de acuerdo en que los remakes y remasters "son reconfortantes y nostálgicos" (MTM, 2025, p. 18).</p>
       </aside>
 
       <aside class="dato-destacado">
-        <p><strong class="dato-cifra">71 %</strong> los ve como una buena forma de compartir sus juegos favoritos con quienes no los jugaron (MTM, 2025, p. 19).</p>
+        <p><strong class="dato-cifra">71&nbsp;%</strong> los ve como una buena forma de compartir sus juegos favoritos con quienes no los jugaron (MTM, 2025, p. 19).</p>
       </aside>
 
       <h3>3.4 La nostalgia también es descubrimiento</h3>
-      <p>No toda la nostalgia viene de la memoria. En la misma encuesta, el 85 % de los jugadores ha jugado un remake o remaster sin haber jugado el original, y el 67 % dice que los usa para descubrir juegos antiguos por primera vez (MTM, 2025, p. 20). Para la Generación Z, el pasado del videojuego "no se recupera simplemente, sino que se encuentra, se filtra y se reinterpreta" desde la sensibilidad actual (Addeo y Guerra, 2026, p. 35, traducción propia).</p>
+      <p>No toda la nostalgia viene de la memoria. En la misma encuesta, el 85&nbsp;% de los jugadores ha jugado un remake o remaster sin haber jugado el original, y el 67&nbsp;% dice que los usa para descubrir juegos antiguos por primera vez (MTM, 2025, p. 20). Para la Generación Z, el pasado del videojuego "no se recupera simplemente, sino que se encuentra, se filtra y se reinterpreta" desde la sensibilidad actual (Addeo y Guerra, 2026, p. 35, traducción propia).</p>
 
       <h3>3.5 Pero no todos la aplauden</h3>
-      <p>La nostalgia también genera tensiones. Los jugadores se dividen sobre si un remake debe cambiar la historia o la jugabilidad: 35 % cree que mejoran al cambiar, 30 % que empeoran y 35 % está de acuerdo con ambas (MTM, 2025, p. 24). Y varios entrevistados temen que tantos relanzamientos frenen la creatividad (MTM, 2025, p. 14). Además, la nostalgia es selectiva: el jugador quiere volver a los lugares que recuerda, pero no a los controles incómodos que olvidó (Buñuel Fanconi, 2025, p. 259).</p>
+      <p>La nostalgia también genera tensiones. Los jugadores se dividen sobre si un remake debe cambiar la historia o la jugabilidad: 35&nbsp;% cree que mejoran al cambiar, 30&nbsp;% que empeoran y 35&nbsp;% está de acuerdo con ambas (MTM, 2025, p. 24). Y varios entrevistados temen que tantos relanzamientos frenen la creatividad (MTM, 2025, p. 14). Además, la nostalgia es selectiva: el jugador quiere volver a los lugares que recuerda, pero no a los controles incómodos que olvidó (Buñuel Fanconi, 2025, p. 259).</p>
     </section>
 
     <!-- ============================================================ -->
     <!-- NIVEL 4 · El negocio de la nostalgia                         -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-4" data-nivel="4" aria-labelledby="titulo-nivel-4">
-      <p class="nivel-etiqueta">Mundo 4 · El negocio de la nostalgia</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 4</span><span class="nivel-separador"> · </span><span class="nivel-nombre">El negocio de la nostalgia</span></p>
       <h2 id="titulo-nivel-4" class="nivel-titular">Para la industria, la nostalgia es una apuesta de bajo riesgo.</h2>
 
       <h3>4.1 Por qué a las empresas les conviene</h3>
@@ -197,7 +246,7 @@
     <!-- NIVEL 5 · Método                                             -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-5" data-nivel="5" aria-labelledby="titulo-nivel-5">
-      <p class="nivel-etiqueta">Mundo 5 · Método</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 5</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Método</span></p>
       <h2 id="titulo-nivel-5" class="nivel-titular">Medimos 12 juegos con las mismas 5 preguntas.</h2>
 
       <h3>5.1 Tipo de estudio</h3>
@@ -221,9 +270,10 @@
       </ul>
 
       <h3>5.4 Codificación</h3>
-      <p>Siguiendo el procedimiento de Bowman et al. (2023), en el que un primer investigador codifica y un segundo revisa de forma independiente, un integrante del grupo aplicó el test a los 12 juegos y un segundo integrante verifica cada respuesta. Las respuestas en las que hubo dudas se marcan con un asterisco (*) hasta que el segundo codificador las confirme. La meta es un acuerdo mínimo del 80 % entre codificadores.</p>
+      <p>Siguiendo el procedimiento de Bowman et al. (2023), en el que un primer investigador codifica y un segundo revisa de forma independiente, un integrante del grupo aplicó el test a los 12 juegos y un segundo integrante verifica cada respuesta. Las respuestas en las que hubo dudas se marcan con un asterisco (*) hasta que el segundo codificador las confirme. La meta es un acuerdo mínimo del 80&nbsp;% entre codificadores.</p>
 
       <h3>5.5 Variables</h3>
+      <div class="tabla-scroll" role="region" aria-label="Variables del estudio" tabindex="0">
       <table>
         <thead>
           <tr>
@@ -243,13 +293,14 @@
           <tr><th scope="row">Pertenece a saga</th><td>Control</td><td>IP nueva / Saga existente (no suma puntos)</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <!-- ============================================================ -->
     <!-- NIVEL 6 · El Test de Nostalgia                               -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-6" data-nivel="6" aria-labelledby="titulo-nivel-6">
-      <p class="nivel-etiqueta">Mundo 6 · El Test de Nostalgia</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 6</span><span class="nivel-separador"> · </span><span class="nivel-nombre">El Test de Nostalgia</span></p>
       <h2 id="titulo-nivel-6" class="nivel-titular">Cinco preguntas de Sí o No, cada una con respaldo teórico.</h2>
 
       <p>Nuestro instrumento se inspira en el formato del test de Bechdel: pocas preguntas cerradas, fáciles de comprobar mirando la obra. Cada pregunta mide un aspecto distinto, para que una respuesta no dependa de otra.</p>
@@ -332,7 +383,7 @@
     <!-- NIVEL 7 · Resultados                                         -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-7" data-nivel="7" aria-labelledby="titulo-nivel-7">
-      <p class="nivel-etiqueta">Mundo 7 · Resultados</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 7</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Resultados</span></p>
       <h2 id="titulo-nivel-7" class="nivel-titular">7 de los 12 juegos usan nostalgia, pero solo 2 la usan con fuerza.</h2>
 
       <!-- Fase 5 (BRIEF 8.6), en este orden: (1) tarjetas de totales, (2) ficha interactiva,
@@ -358,7 +409,7 @@
     <!-- NIVEL 8 · Hipótesis                                          -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-8" data-nivel="8" aria-labelledby="titulo-nivel-8">
-      <p class="nivel-etiqueta">Mundo 8 · Hipótesis</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 8</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Hipótesis</span></p>
       <h2 id="titulo-nivel-8" class="nivel-titular">Las tendencias van en la dirección esperada, pero son pequeñas.</h2>
 
       <!-- Fase 5: tres "jefes" (BRIEF 8.7). Los números de las barras de vida salen de datos.js -->
@@ -400,7 +451,7 @@
     <!-- NIVEL 9 · Discusión                                          -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-9" data-nivel="9" aria-labelledby="titulo-nivel-9">
-      <p class="nivel-etiqueta">Mundo 9 · Discusión</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 9</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Discusión</span></p>
       <h2 id="titulo-nivel-9" class="nivel-titular">La nostalgia vende, pero no es obligatoria para vender.</h2>
 
       <h3>9.1 La nostalgia como complemento, no como base</h3>
@@ -428,7 +479,7 @@
     <!-- NIVEL 10 · Límites                                           -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-10" data-nivel="10" aria-labelledby="titulo-nivel-10">
-      <p class="nivel-etiqueta">Mundo 10 · Límites</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">Mundo 10</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Límites</span></p>
       <h2 id="titulo-nivel-10" class="nivel-titular">Lo que este estudio no puede decir.</h2>
 
       <ol>
@@ -448,7 +499,7 @@
     <!-- NIVEL 11 · GAME OVER · Conclusión                            -->
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-11" data-nivel="11" aria-labelledby="titulo-nivel-11">
-      <p class="nivel-etiqueta">GAME OVER · Conclusión</p>
+      <p class="nivel-etiqueta"><span class="nivel-mundo">GAME OVER</span><span class="nivel-separador"> · </span><span class="nivel-nombre">Conclusión</span></p>
       <h2 id="titulo-nivel-11" class="nivel-titular">La nostalgia es una herramienta, y cada tipo de estudio la usa a su manera.</h2>
 
       <p>La nostalgia está presente en más de la mitad de los videojuegos más vendidos de las décadas de 2000 y 2010, pero casi siempre como recurso complementario y de forma simple, sin reflexionar sobre el pasado. Su uso aumenta levemente de una década a otra.</p>
@@ -460,8 +511,8 @@
       <!-- Fase 3: "CONTINUE?" vuelve al mapa y "Leer como documento" activa el modo lectura -->
       <p class="botones-finales">
         <a class="boton" href="#nivel-0">▶ CONTINUE?</a>
-        <button type="button" class="boton boton-modo-lectura">📄 Leer como documento</button>
-        <a class="boton" href="#nivel-12">↓ Ver referencias</a>
+        <button type="button" class="boton boton-secundario boton-modo-lectura">📄 Leer como documento</button>
+        <a class="boton boton-secundario" href="#nivel-12">↓ Ver referencias</a>
       </p>
     </section>
 
@@ -470,7 +521,7 @@
     <!-- ============================================================ -->
     <section class="nivel" id="nivel-12" data-nivel="12" aria-labelledby="titulo-nivel-12">
       <p class="nivel-etiqueta">Créditos</p>
-      <h2 id="titulo-nivel-12" class="nivel-titular">Créditos</h2>
+      <h2 id="titulo-nivel-12" class="nivel-titular visualmente-oculto">Créditos</h2>
 
       <p><strong>Equipo:</strong> Justin Peñafiel · Naomi Armas · Joel Castillo</p>
       <p><strong>Curso:</strong> Taller de Investigación · Prof. Juan Pablo Viteri · USFQ · 2026</p>
