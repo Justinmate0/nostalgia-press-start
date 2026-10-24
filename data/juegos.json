@@ -1,0 +1,121 @@
+{
+  "actualizado": "2026-10-24",
+  "nota_ventas": "Ventas acumuladas en millones de unidades. Fuentes: Wikipedia (List of best-selling video games) y VGChartz, octubre 2026. World of Goo es una estimación.",
+  "preguntas": {
+    "P1": "¿Tiene estética retro a propósito?",
+    "P2": "¿Tiene mecánicas retro?",
+    "P3": "¿Reutiliza elementos icónicos de su propia saga?",
+    "P4": "¿Su formato es uno de los formatos clásicos?",
+    "P5": "¿Es una nueva versión de un juego anterior?"
+  },
+  "juegos": [
+    {
+      "id": "the-sims", "nombre": "The Sims", "anio": 2000,
+      "decada": "2000s", "tipo": "AAA", "ventas_m": 50, "ventas_estimada": false,
+      "saga": "IP nueva",
+      "respuestas": {"P1": false, "P2": false, "P3": false, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Nula", "tipo_nostalgia": null, "orientacion": null,
+      "evidencia": "Juego original sin rasgos retro."
+    },
+    {
+      "id": "mario-kart-wii", "nombre": "Mario Kart Wii", "anio": 2008,
+      "decada": "2000s", "tipo": "AAA", "ventas_m": 37.4, "ventas_estimada": false,
+      "saga": "Saga existente",
+      "respuestas": {"P1": false, "P2": false, "P3": true, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Moderada", "tipo_nostalgia": "Simple", "orientacion": "Memoria directa",
+      "evidencia": "Incluye circuitos retro de entregas anteriores de Mario Kart."
+    },
+    {
+      "id": "nsmb", "nombre": "New Super Mario Bros.", "anio": 2006,
+      "decada": "2000s", "tipo": "AAA", "ventas_m": 30.8, "ventas_estimada": false,
+      "saga": "Saga existente",
+      "respuestas": {"P1": false, "P2": true, "P3": true, "P4": true, "P5": false},
+      "verificar": [],
+      "resultado": "Alta", "tipo_nostalgia": "Simple", "orientacion": "Memoria directa",
+      "evidencia": "Vidas y game over; Flor de Fuego y Estrella de Super Mario Bros.; plataformas 2D con desplazamiento lateral."
+    },
+    {
+      "id": "garrys-mod", "nombre": "Garry's Mod", "anio": 2006,
+      "decada": "2000s", "tipo": "Indie", "ventas_m": 25.6, "ventas_estimada": false,
+      "saga": "IP nueva",
+      "respuestas": {"P1": false, "P2": false, "P3": false, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Nula", "tipo_nostalgia": null, "orientacion": null,
+      "evidencia": "Sandbox de física sin recursos retro."
+    },
+    {
+      "id": "castle-crashers", "nombre": "Castle Crashers", "anio": 2008,
+      "decada": "2000s", "tipo": "Indie", "ventas_m": 20, "ventas_estimada": false,
+      "saga": "IP nueva",
+      "respuestas": {"P1": false, "P2": true, "P3": false, "P4": true, "P5": false},
+      "verificar": ["P2"],
+      "resultado": "Moderada", "tipo_nostalgia": "Simple", "orientacion": "Anemoia",
+      "evidencia": "Beat 'em up cooperativo para cuatro, descrito como homenaje a los beat 'em ups de arcade (Hardcore Gaming 101)."
+    },
+    {
+      "id": "world-of-goo", "nombre": "World of Goo", "anio": 2008,
+      "decada": "2000s", "tipo": "Indie", "ventas_m": 2, "ventas_estimada": true,
+      "saga": "IP nueva",
+      "respuestas": {"P1": false, "P2": false, "P3": false, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Nula", "tipo_nostalgia": null, "orientacion": null,
+      "evidencia": "Puzzle de física original sin recursos retro."
+    },
+    {
+      "id": "gta-v", "nombre": "Grand Theft Auto V", "anio": 2013,
+      "decada": "2010s", "tipo": "AAA", "ventas_m": 230, "ventas_estimada": false,
+      "saga": "Saga existente",
+      "respuestas": {"P1": false, "P2": false, "P3": false, "P4": false, "P5": false},
+      "verificar": ["P3"],
+      "resultado": "Nula", "tipo_nostalgia": null, "orientacion": null,
+      "evidencia": "Solo huevos de pascua puntuales; no reutiliza elementos icónicos de forma central (sin contar GTA Online)."
+    },
+    {
+      "id": "rdr2", "nombre": "Red Dead Redemption 2", "anio": 2018,
+      "decada": "2010s", "tipo": "AAA", "ventas_m": 87, "ventas_estimada": false,
+      "saga": "Saga existente",
+      "respuestas": {"P1": false, "P2": false, "P3": true, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Moderada", "tipo_nostalgia": "Simple", "orientacion": "Memoria directa",
+      "evidencia": "Personajes de Red Dead Redemption (John Marston, Bill Williamson, Javier Escuella)."
+    },
+    {
+      "id": "mk8d", "nombre": "Mario Kart 8 Deluxe", "anio": 2017,
+      "decada": "2010s", "tipo": "AAA", "ventas_m": 80, "ventas_estimada": false,
+      "saga": "Saga existente",
+      "respuestas": {"P1": false, "P2": false, "P3": true, "P4": false, "P5": true},
+      "verificar": [],
+      "resultado": "Relanzamiento", "tipo_nostalgia": "Simple", "orientacion": "Memoria directa",
+      "evidencia": "Versión mejorada de Mario Kart 8 (2014); incluye circuitos retro."
+    },
+    {
+      "id": "minecraft", "nombre": "Minecraft", "anio": 2011,
+      "decada": "2010s", "tipo": "Indie", "ventas_m": 425, "ventas_estimada": false,
+      "saga": "IP nueva",
+      "respuestas": {"P1": true, "P2": true, "P3": false, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Moderada", "tipo_nostalgia": "Simple", "orientacion": "Anemoia",
+      "evidencia": "Texturas pixeladas por decisión de diseño (Addeo y Guerra, 2026, p. 35, lo citan como juego de estilo retro); modo Hardcore."
+    },
+    {
+      "id": "terraria", "nombre": "Terraria", "anio": 2011,
+      "decada": "2010s", "tipo": "Indie", "ventas_m": 70, "ventas_estimada": false,
+      "saga": "IP nueva",
+      "respuestas": {"P1": true, "P2": true, "P3": false, "P4": true, "P5": false},
+      "verificar": [],
+      "resultado": "Alta", "tipo_nostalgia": "Simple", "orientacion": "Anemoia",
+      "evidencia": "Pixel art tipo 16 bits; modo Hardcore; plataformas 2D con desplazamiento lateral."
+    },
+    {
+      "id": "human-fall-flat", "nombre": "Human: Fall Flat", "anio": 2016,
+      "decada": "2010s", "tipo": "Indie", "ventas_m": 58, "ventas_estimada": false,
+      "saga": "IP nueva",
+      "respuestas": {"P1": false, "P2": false, "P3": false, "P4": false, "P5": false},
+      "verificar": [],
+      "resultado": "Nula", "tipo_nostalgia": null, "orientacion": null,
+      "evidencia": "Física y estilo visual propios, sin recursos retro."
+    }
+  ]
+}
