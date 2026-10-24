@@ -12,10 +12,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Press+Start+2P&display=swap">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/modos.css">
+  <!-- Mientras carga el JS no se muestra nada a medias; sin JS, el Documento queda visible tal cual. -->
+  <script>document.documentElement.classList.add('con-js');</script>
 </head>
 <body>
 
-  <!-- Fase 3: barra XP, mapa de mundo y botón fijo "Leer como documento" (BRIEF 8.1 y 8.8) -->
+  <!-- Selector de modo (Stories o Documento); lo llena js/main.js -->
+  <section id="selector" class="pantalla-selector" aria-label="Elige cómo ver la investigación"></section>
+
+  <!-- Modo Stories; lo llena js/stories.js -->
+  <div id="modo-stories" class="modo-stories" role="region" aria-label="Modo Stories"></div>
+
+  <!-- Cabecera del Documento: mapa de niveles, barra XP y modo lectura (BRIEF 8.1 y 8.8) -->
   <header id="cabecera">
     <nav id="mapa" aria-label="Mapa de niveles"></nav>
   </header>

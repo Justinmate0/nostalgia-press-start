@@ -121,8 +121,13 @@ export function resumen(juegos) {
 
   const nostalgicos = conNostalgia(juegos);
 
+  // Diferencia absoluta entre los promedios de las dos décadas, con coma y 2 decimales (0,17).
+  const diferenciaDecadas = Math.abs(promedios['2010s'].valor - promedios['2000s'].valor)
+    .toLocaleString('es-EC', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
   return {
     n: juegos.length,
+    diferenciaDecadas,
     promedios,
     conteoPorPregunta: conteos,
     totales: totales(juegos),
