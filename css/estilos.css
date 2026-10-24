@@ -210,7 +210,7 @@ strong {
   width: 100%;
   max-width: calc(var(--ancho-contenido) + 2 * var(--espacio));
   margin: 0 auto;
-  padding: 4rem var(--espacio) 3.5rem;
+  padding: 2.5rem var(--espacio) 2.5rem;
   position: relative;
 }
 
@@ -220,7 +220,7 @@ strong {
   display: block;
   height: var(--pixel);
   width: min(100%, var(--ancho-contenido));
-  margin: 0 auto 4rem;
+  margin: 0 auto 2rem;
   background: repeating-linear-gradient(
     to right,
     var(--linea) 0,
@@ -232,20 +232,19 @@ strong {
 
 /* Etiqueta del nivel ("Mundo 1 · El problema") en fuente pixelada con una "moneda". */
 .nivel-etiqueta {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
+  display: block;
   margin: 0 0 1.25rem;
   color: var(--acento);
-  text-wrap: balance;
+  max-width: none;
 }
 
 .nivel-etiqueta::before {
   content: "";
-  flex: none;
+  display: inline-block;
   width: 12px;
   height: 12px;
-  margin-top: 0.3em;
+  margin-right: 0.7rem;
+  vertical-align: -1px;
   background: var(--acento);
   /* Moneda de 4×4 píxeles sin las esquinas */
   clip-path: polygon(
@@ -309,7 +308,6 @@ h4 {
 }
 
 #nivel-0 .nivel-etiqueta {
-  justify-content: center;
   margin-bottom: 2rem;
 }
 
@@ -390,6 +388,26 @@ h4 {
 
 .boton:focus-visible {
   outline-color: var(--texto);
+}
+
+/* Secundario: solo borde, misma sombra escalonada. */
+.boton-secundario {
+  background: transparent;
+  color: var(--acento);
+  box-shadow:
+    inset 0 0 0 3px var(--acento),
+    0 var(--pixel) 0 0 var(--acento-oscuro),
+    var(--pixel) 0 0 0 var(--acento-oscuro),
+    var(--pixel) var(--pixel) 0 0 var(--acento-oscuro);
+}
+
+.boton-secundario:hover {
+  background: rgba(255, 204, 51, 0.12);
+  color: var(--acento);
+}
+
+.boton-secundario:active {
+  box-shadow: inset 0 0 0 3px var(--acento);
 }
 
 .botones-finales {
@@ -561,10 +579,22 @@ table {
   width: 100%;
   min-width: 520px;
   border-collapse: collapse;
-  font-family: var(--fuente-datos);
-  font-size: 0.95rem;
+  font-family: var(--fuente-lectura);
+  font-size: 1rem;
   line-height: 1.45;
   background: transparent;
+}
+
+/* Plex Mono solo en encabezados y en celdas numéricas (clase .num). */
+th,
+td.num,
+.num {
+  font-family: var(--fuente-datos);
+  font-size: 0.95rem;
+}
+
+td.num {
+  font-variant-numeric: tabular-nums;
 }
 
 caption {
@@ -631,12 +661,12 @@ tbody tr:last-child td {
   }
 
   .nivel {
-    padding-top: 3rem;
-    padding-bottom: 2.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .nivel + .nivel::before {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .nivel-titular {
@@ -713,6 +743,28 @@ tbody tr:last-child td {
 
   tbody th {
     white-space: normal;
+  }
+}
+
+/* Pantallas muy angostas (< 400 px): la etiqueta pixelada baja a 12 px y el nombre
+   del nivel pasa a su propia línea, para que no se parta en lugares raros. */
+@media (max-width: 399px) {
+  .nivel-etiqueta {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    line-height: 1.8;
+  }
+
+  .nivel-etiqueta .nivel-separador {
+    display: none;
+  }
+
+  .nivel-etiqueta .nivel-nombre {
+    display: block;
+  }
+
+  #nivel-0 .nivel-etiqueta {
+    font-size: 0.875rem;
   }
 }
 
